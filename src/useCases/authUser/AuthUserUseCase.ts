@@ -14,7 +14,7 @@ class AuthUserUseCase {
     async execute({email, password}: IRequest) {
 
         //VERIFICA SE USUARIO EXISTE
-        const userAlreadyExists = await Prisma.user.findFirst({
+        const userAlreadyExists = await Prisma.users.findFirst({
             where: {
                email
             }
