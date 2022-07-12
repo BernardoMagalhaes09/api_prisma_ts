@@ -1,8 +1,17 @@
 import { Router, Request, Response } from 'express';
 import Prisma from '../database/prisma';
 import bcrypt from 'bcryptjs';
+import { AuthUserController } from '../useCases/authUser/AuthUserController';
+import { RefreshTokenUserController } from '../useCases/refreshTokenUser/RefreshTokenUserController';
+
+const authUserController = new AuthUserController()
+const refreshTokenUserController = new RefreshTokenUserController()
 
 const router = Router();
+
+router.post('/login', authUserController.handle);
+
+router.post('/refreshToken', refreshTokenUserController.handle)
 
 router.get('/getUsers', async (request: Request, response: Response) => {
 
