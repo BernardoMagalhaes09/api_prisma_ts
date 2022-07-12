@@ -1,4 +1,4 @@
-import { users, start} from './routes/index'
+import { users, start, sellers, products} from './routes/index'
 import express,{ Request, Response, NextFunction } from 'express';
 
 const server = express();
@@ -14,6 +14,8 @@ server.use((request, response, next) => {
 })
 server.use('/public', express.static('public'));
 server.use('/api/v1/users', users.default);
+server.use('/api/v1/sellers', sellers.default)
+server.use('/api/v1/products', products.default)
 server.use('/api/v1', start.default)
 server.use(async (request: Request, response: Response, next: NextFunction) => {
   next(response.status(400).json({ error: 'Router do not exists' }));
