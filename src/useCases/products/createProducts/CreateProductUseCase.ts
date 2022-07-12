@@ -1,4 +1,3 @@
-import { response } from "express"
 import Prisma from "../../../database/prisma"
 import {AppError} from '../../../errors/AppError'
 
@@ -36,7 +35,7 @@ class CreateProductUseCase {
                     colection
                 }
             })
-            return response.status(200).json(product)
+            return product
         }catch(error) {
             throw new AppError("Not created product")
         }
